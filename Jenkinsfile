@@ -1,23 +1,22 @@
 pipeline {
     agent any
     stages{
-        stage('parallel-level'){
-            parallel{
-                stage('sub-job1'){
-                    steps{
-                        echo "sub-job1 task"
-                    }
-                }
-                stage('sub-job2'){
-                    steps{
-                        echo "sub-job2 task"
-                    }
-                }
+        stage('Main Branch Deploy Code'){
+            when{
+                branch 'main'
+            }
+            steps {
+                sh 'echo "Building Artifact from Main Branch"'
+                sh 'echo "Deploying Code from Main Branch"'
             }
         }
-        stage('version-control'){
-            steps{
-                echo "end of parallel job"
+        stage('Develop Branch Deploy Code'){
+             when{
+                branch 'develop'
+            }
+            steps {
+                sh 'echo "Building Artifact from Develop Branch"'
+                sh 'echo "Deploying Code from Develop Branch"'
             }
         }
     }
