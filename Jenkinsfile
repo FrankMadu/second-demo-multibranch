@@ -17,6 +17,7 @@ pipeline {
             steps {
                 sh 'echo "Building Artifact from Develop Branch"'
                 sh 'echo "Deploying Code from Develop Branch"'
+                sh 'cat /etc/os-release/'
             }
         }
     }
